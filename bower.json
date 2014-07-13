@@ -1,0 +1,32 @@
+{
+  "name": "vg-twig-child",
+  "version": "1.0.0",
+  "authors": [
+    "VG web things <info@vgwebthings.com>"
+  ],
+  "description": "Child Theme of VG web things Scaffold Theme (Twig)",
+  "moduleType": [
+    "node"
+  ],
+  "license": "proprietary",
+  "homepage": "http://www.vgwebthings.com/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.11.0",
+    "modernizr": "*"
+  },
+  "devDependencies": {
+    "bower-bitters": "*",
+    "bower-bourbon": "*",
+    "bower-neat": "*",
+    "normalize-scss": "*"
+  }
+}
