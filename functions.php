@@ -23,10 +23,9 @@ class StarterSite extends TimberSite {
     function register_taxonomies() {
     }
     function add_to_context( $context ) {
-        //$context[ 'general-settings' ]  = get_field( 'general-settings' );
-        //$context[ 'advanced-settings' ] = get_field( 'advanced-settings' );
-        $context[ 'menu' ] = new TimberMenu();
-        $context[ 'site' ] = $this;
+        $context[ 'settings' ] = get_fields( 'options' );
+        $context[ 'menu' ]     = new TimberMenu();
+        $context[ 'site' ]     = $this;
         return $context;
     }
     function add_to_twig( $twig ) {
