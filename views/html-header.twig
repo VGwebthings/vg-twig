@@ -5,7 +5,7 @@
 <html class="no-js" {{ site.language_attributes }}> <!--<![endif]-->
 <head>
     <meta charset="{{ site.charset }}">
-    <title>{{ wp_title }}</title>
+    <title>{{ function('wp_title', '|', 'true', 'right') }}</title>
     <meta name="description" content="{{ site.description }}">
     <link rel="stylesheet" href="{{ site.theme.link }}/style.css" type="text/css" media="screen">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
