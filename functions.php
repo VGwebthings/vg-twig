@@ -45,7 +45,7 @@ function vg_twig_register_required_plugins() {
                              'slug'               => 'timber-library',
                              'required'           => true,
                              'force_activation'   => true,
-                             'force_deactivation' => false ) );
+                             'force_deactivation' => true ) );
     tgmpa( $plugins );
 }
 
