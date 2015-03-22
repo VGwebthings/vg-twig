@@ -14,5 +14,5 @@ $templates             = array( 'index.twig' );
 if ( is_home() ) {
     array_unshift( $templates, 'home.twig' );
 }
-Timber::render( $templates, $context, $context['opcode'] );
+Timber::render( $templates, $context );
 //var_dump( TimberHelper::stop_timer( $start ) );
