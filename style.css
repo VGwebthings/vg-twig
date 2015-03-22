@@ -1,12 +1,10 @@
 /*
-Theme Name: VG web things Child (Twig)
-Theme URI: https://github.com/VGwebthings/vg-twig-child/
+Theme Name: VG web things Twig
+Theme URI: https://github.com/VGwebthings/vg-twig
 Author: VG web things
 Author URI: http://www.vgwebthings.com/
 Description: Scaffold Theme (Twig)
-Version: 1.0
+Version: 1.0.0
 Text Domain: vg
 Domain Path: /languages/
-Template: vg
 */
-@import url("../vg/style.css");

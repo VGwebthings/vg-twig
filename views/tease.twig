@@ -1,11 +1,11 @@
-<article class="tease tease-{{ post.post_type }}" id="tease-{{ post.ID }}">
+<article class="tease tease-{{ post.post_type }}">
     {% block content %}
-        <h2 class="h2">
+        <h2>
             <a href="{{ post.link }}">{{ post.title }}</a>
         </h2>
         <p>{{ post.get_preview }}</p>
         {% if post.get_thumbnail %}
-            <img src="{{ post.thumbnail.src }}"/>
+            <img src="{{ post.thumbnail.src }}" alt="{{ post.title|escape }}">
         {% endif %}
     {% endblock %}
 </article>

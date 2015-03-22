@@ -19,14 +19,6 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "jquery": "1.11.0",
-    "modernizr": "*"
-  },
-  "devDependencies": {
-    "bower-bitters": "*",
-    "bower-bourbon": "*",
-    "bower-neat": "*",
-    "normalize-scss": "*"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

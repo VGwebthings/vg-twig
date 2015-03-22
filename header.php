@@ -3,5 +3,5 @@
  * Third party plugins that hijack the theme will call wp_head() to get the header template.
  * We use this so start our output buffer and render into the view/page-plugin.twig template in footer.php
  */
-$GLOBALS[ 'timberContext' ] = Timber::get_context();
+$GLOBALS['timberContext'] = Timber::get_context();
 ob_start();
