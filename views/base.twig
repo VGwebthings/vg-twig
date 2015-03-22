@@ -1,46 +1,35 @@
-{#{{ function('acf_form_head') }}#}
 {% block html_head_container %}
     {% include 'html-header.twig' %}
-    {% block head %}
-    {% endblock %}
+    {% block head %}{% endblock %}
     </head>
 {% endblock %}
-<body class="{{ body_class }}" data-template="base.twig">
-<header class="header">
-    {% block header %}
-        <div class="wrapper">
-            <h1 class="hdr-logo" role="banner">
-                <a class="hdr-logo-link" href="/" title="{{ site.name }}" rel="home">{{ site.name }}</a>
-            </h1>
-            <nav id="access" class="main-navigation" role="navigation">
-                <ul>
-                    {% for item in menu.items %}
-                        <li id="menu-item-{{ item.ID }}" class="menu-item menu-item-type-{{ item.type }} menu-item-object-{{ item.object }} menu-item-{{ item.ID }}">
-                            <a href="{{ item.link }}">{{ item.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </nav>
-        </div>
-    {% endblock %}
-</header>
-<section id="content" role="main" class="content-wrapper">
-    {% if title %}<h1>{{ title }}</h1>{% endif %}
-    <div class="wrapper {{ sidebar_class }}">
-        {% block content %}
-            Sorry, no content
+<body class="{{ body_class }}">
+<div id="page">
+    <header id="header">
+        {% block header %}
+            <div class="wrapper">
+                <a id="logo" href="{{ site.url }}" title="{{ site.name }}" rel="home">{{ site.name }}</a>
+                <nav id="access" class="main-navigation" role="navigation">
+                    <ul>
+                        {% for item in menu.items %}
+                            <li class="{{ item.classes | join(' ') }}">
+                                <a href="{{ item.link }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
         {% endblock %}
-    </div>
-    {% if sidebar %}
-        <aside class="layout-sidebar">
-            {{ sidebar }}
-        </aside>
-    {% endif %}
-</section>
-{% block footer %}
-    <footer id="footer">
-        {% include 'footer.twig' %}
-    </footer>
-    {{ function('wp_footer') }}
-{% endblock %}
+    </header>
+    <section id="content" role="main">
+        {% if title %}<h1>{{ title }}</h1>{% endif %}
+        {% block content %}
+        {% endblock %}
+        {% if sidebar %}{{ sidebar }}{% endif %}
+    </section>
+    {% block footer %}
+        <footer id="footer">{% include 'footer.twig' %}</footer>
+    {% endblock %}
+</div>
+{{ function('wp_footer') }}
 </body></html>
