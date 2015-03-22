@@ -1,61 +1,191 @@
 <?php
-if ( !class_exists( 'Timber' ) ) {
-    echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
+/*
+add_action( 'tgmpa_register', function () {
+    $plugins = array(
+        array(
+            'name'               => 'Timber',
+            'slug'               => 'timber-library',
+            'required'           => true,
+            'force_activation'   => true,
+            'force_deactivation' => false
+        ),
+    );
+    tgmpa( $plugins );
+} );
+*/
+if ( ! class_exists( 'Timber' ) ) {
+    add_action( 'admin_notices', function () {
+        echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
+    } );
+
     return;
 }
+
 class StarterSite extends TimberSite {
     function __construct() {
-        add_theme_support( 'post-thumbnails' );
-        add_theme_support( 'menus' );
-        add_filter( 'timber_context', array( $this,
-                                             'add_to_context' ) );
-        add_filter( 'get_twig', array( $this,
-                                       'add_to_twig' ) );
-        add_action( 'init', array( $this,
-                                   'register_post_types' ) );
-        add_action( 'init', array( $this,
-                                   'register_taxonomies' ) );
+        add_filter( 'timber_context', array( $this, 'add_to_context' ) );
+        add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
+        //add_action( 'init', array( $this, 'register_post_types' ) );
+        //add_action( 'init', array( $this, 'register_taxonomies' ) );
         parent::__construct();
     }
+
     function register_post_types() {
+        $labels  = array(
+            'name'               => _x( 'Post Types', 'Post Type General Name', 'vg' ),
+            'singular_name'      => _x( 'Post Type', 'Post Type Singular Name', 'vg' ),
+            'menu_name'          => __( 'Post Type', 'vg' ),
+            'parent_item_colon'  => __( 'Parent Item:', 'vg' ),
+            'all_items'          => __( 'All Items', 'vg' ),
+            'view_item'          => __( 'View Item', 'vg' ),
+            'add_new_item'       => __( 'Add New Item', 'vg' ),
+            'add_new'            => __( 'Add New', 'vg' ),
+            'edit_item'          => __( 'Edit Item', 'vg' ),
+            'update_item'        => __( 'Update Item', 'vg' ),
+            'search_items'       => __( 'Search Item', 'vg' ),
+            'not_found'          => __( 'Not found', 'vg' ),
+            'not_found_in_trash' => __( 'Not found in Trash', 'vg' ),
+        );
+        $rewrite = array(
+            'slug'       => 'custom_post_type',
+            'with_front' => false,
+            'pages'      => true,
+            'feeds'      => false,
+        );
+        $args    = array(
+            'label'               => __( 'Custom Post Type', 'vg' ),
+            'description'         => __( 'Post Type Description', 'vg' ),
+            'labels'              => $labels,
+            'supports'            => array( 'author', 'title', 'editor', 'thumbnail', ),
+            'taxonomies'          => array( 'taxonomy' ),
+            'hierarchical'        => false,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_nav_menus'   => true,
+            'show_in_admin_bar'   => true,
+            'menu_position'       => 5,
+            'menu_icon'           => 'dashicons-admin-post',
+            'can_export'          => false,
+            'has_archive'         => false,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'rewrite'             => $rewrite,
+            'capability_type'     => 'post',
+        );
+        register_post_type( 'custom_post_type', $args );
     }
+
     function register_taxonomies() {
+        $labels  = array(
+            'name'                       => _x( 'Taxonomies', 'Taxonomy General Name', 'vg' ),
+            'singular_name'              => _x( 'Taxonomy', 'Taxonomy Singular Name', 'vg' ),
+            'menu_name'                  => __( 'Taxonomy', 'vg' ),
+            'all_items'                  => __( 'All Items', 'vg' ),
+            'parent_item'                => __( 'Parent Item', 'vg' ),
+            'parent_item_colon'          => __( 'Parent Item:', 'vg' ),
+            'new_item_name'              => __( 'New Item Name', 'vg' ),
+            'add_new_item'               => __( 'Add New Item', 'vg' ),
+            'edit_item'                  => __( 'Edit Item', 'vg' ),
+            'update_item'                => __( 'Update Item', 'vg' ),
+            'separate_items_with_commas' => __( 'Separate items with commas', 'vg' ),
+            'search_items'               => __( 'Search Items', 'vg' ),
+            'add_or_remove_items'        => __( 'Add or remove items', 'vg' ),
+            'choose_from_most_used'      => __( 'Choose from the most used items', 'vg' ),
+            'not_found'                  => __( 'Not Found', 'vg' ),
+        );
+        $rewrite = array(
+            'slug'         => 'taxonomy',
+            'with_front'   => false,
+            'hierarchical' => true,
+        );
+        $args    = array(
+            'labels'            => $labels,
+            'hierarchical'      => true,
+            'public'            => true,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'show_in_nav_menus' => true,
+            'show_tagcloud'     => false,
+            'rewrite'           => $rewrite,
+        );
+        register_taxonomy( 'taxonomy', array( 'custom_post_type' ), $args );
     }
+
     function add_to_context( $context ) {
-        $context[ 'settings' ] = get_fields( 'options' );
-        $context[ 'menu' ]     = new TimberMenu();
-        $context[ 'site' ]     = $this;
+        $context['settings'] = get_fields( 'options' );
+        $context['menu']     = new TimberMenu();
+        $context['sidebar']  = Timber::get_sidebar( 'sidebar.php' );
+        $context['site']     = $this;
+        //@todo
+        /*
+        if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
+            $context['opcode'] = false;
+        } else {
+            $context['opcode'] = false;
+        }
+        */
+
         return $context;
     }
+
     function add_to_twig( $twig ) {
         $twig->addExtension( new Twig_Extension_StringLoader() );
-        $twig->addFilter( 'myfoo', new Twig_Filter_Function( 'myfoo' ) );
+        $twig->addFilter( 'antispam', new Twig_Filter_Function( 'vg_antispam' ) );
+
         return $twig;
     }
 }
+
 new StarterSite();
-function myfoo( $text ) {
-    $text .= ' bar!';
-    return $text;
+function vg_antispam( $email ) {
+    return antispambot( $email );
 }
 
-add_action( 'tgmpa_register', 'vg_twig_register_required_plugins' );
-function vg_twig_register_required_plugins() {
-    $plugins = array( array( 'name'               => 'Timber',
-                             'slug'               => 'timber-library',
-                             'required'           => true,
-                             'force_activation'   => true,
-                             'force_deactivation' => true ) );
-    tgmpa( $plugins );
-}
-
-add_action( 'wp_enqueue_scripts', 'vg_twig_scripts', 99 );
-function vg_twig_scripts() {
-    //wp_enqueue_style( 'style_dev', get_stylesheet_directory_uri() . '/assets/css/style.css', false, filemtime( get_template_directory_uri() . '/assets/css/style.css' ) );
-    //wp_enqueue_style( 'app_dev', get_stylesheet_directory_uri() . '/assets/css/app.css', false, filemtime( get_template_directory_uri() . '/assets/css/app.css' ) );
-    //wp_enqueue_style( 'app', get_stylesheet_directory_uri() . '/assets/css/app.scss.min.css', false, null );
-    wp_enqueue_style( 'style_dev', get_stylesheet_directory_uri() . '/assets/css/style.css', false, null );
-    wp_enqueue_style( 'app_dev', get_stylesheet_directory_uri() . '/assets/css/app.css', false, null );
-    wp_enqueue_script( 'app', get_stylesheet_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), null, true );
-    wp_localize_script( 'app', 'app_settings', array( 'test' => 'test' ) );
-}
+//@todo
+//if ( class_exists( 'Timber' ) ) {
+//    Timber::$cache = true;
+//}
+add_action( 'wp_enqueue_scripts', function () {
+    global $wp_styles;
+    global $is_IE;
+    //wp_enqueue_style( 'scss', get_stylesheet_directory_uri() . '/assets/css/app.scss.css', false, null );
+    //wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/assets/css/style.css', false, null );
+    //wp_enqueue_style( 'app', get_stylesheet_directory_uri() . '/assets/css/app.css', false, null );
+    if ( $is_IE ) {
+        wp_enqueue_style( 'ie-styles', get_stylesheet_directory_uri() . '/assets/css/ie.css', false, null );
+        $wp_styles->add_data( 'ie-styles', 'conditional', 'IE' );
+    }
+    //wp_enqueue_script( 'app', get_stylesheet_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), null, true );
+    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+        wp_enqueue_script( 'comment-reply' );
+    }
+}, 99 );
+add_action( 'widgets_init', function () {
+    register_sidebar( array(
+        'name'          => 'Sidebar',
+        'id'            => 'sidebar',
+        'before_widget' => '<aside class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => '<h5 class="widget-title">',
+        'after_title'   => '</h5>',
+    ) );
+} );
+add_action( 'after_setup_theme', function () {
+    //load_theme_textdomain( 'vg', get_stylesheet_directory_uri() . '/languages' );
+    //add_theme_support( 'nanga-analytics' );
+    //add_theme_support( 'nanga-asset-cachebusting' );
+    //add_theme_support( 'nanga-cdn-assets' );
+    //add_theme_support( 'nanga-debug-assets' );
+    //add_theme_support( 'nanga-disable-categories' );
+    //add_theme_support( 'nanga-disable-comments' );
+    //add_theme_support( 'nanga-disable-posts' );
+    //add_theme_support( 'nanga-disable-tags' );
+    //add_theme_support( 'nanga-js-to-footer' );
+    //add_theme_support( 'nanga-mobile-check' );
+    //add_theme_support( 'nanga-modernizr' );
+    //add_theme_support( 'nanga-sanity' );
+    //add_theme_support( 'nanga-settings' );
+    //add_theme_support( 'nanga-support-request' );
+    //add_theme_support( 'woocommerce' );
+} );
