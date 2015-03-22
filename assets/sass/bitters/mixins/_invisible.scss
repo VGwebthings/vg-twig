@@ -1,8 +1,0 @@
-$critical: false;
-@mixin invisible($critical) {
-    @if ($critical == true) {
-        display: none !important;
-    } @else{
-        display: none;
-    }
-}
