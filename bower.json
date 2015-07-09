@@ -18,6 +18,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "basscss-sass": "~2.0.0"
+    "basscss-sass": "~2.0.0",
+    "juice": "~1.0.1",
+    "materialize": "~0.97.0"
   }
 }
