@@ -115,16 +115,15 @@ class StarterSite extends TimberSite {
     function add_to_context( $context ) {
         $context['settings'] = get_fields( 'options' );
         $context['menu']     = new TimberMenu();
-        $context['sidebar']  = Timber::get_sidebar( 'sidebar.php' );
-        $context['site']     = $this;
-        //@todo
-        /*
+        if ( current_theme_supports( 'nanga-sidebar' ) ) {
+            $context['sidebar'] = Timber::get_sidebar( 'sidebar.php' );
+        }
+        $context['site'] = $this;
         if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
             $context['opcode'] = false;
         } else {
             $context['opcode'] = false;
         }
-        */
 
         return $context;
     }
@@ -161,18 +160,19 @@ add_action( 'wp_enqueue_scripts', function () {
         wp_enqueue_script( 'comment-reply' );
     }
 }, 99 );
-add_action( 'widgets_init', function () {
-    register_sidebar( array(
-        'name'          => 'Sidebar',
-        'id'            => 'sidebar',
-        'before_widget' => '<aside class="widget %2$s">',
-        'after_widget'  => '</aside>',
-        'before_title'  => '<h5 class="widget-title">',
-        'after_title'   => '</h5>',
-    ) );
-} );
+if ( current_theme_supports( 'nanga-sidebar' ) ) {
+    add_action( 'widgets_init', function () {
+        register_sidebar( array(
+            'name'          => 'Sidebar',
+            'id'            => 'sidebar',
+            'before_widget' => '<aside class="widget %2$s">',
+            'after_widget'  => '</aside>',
+            'before_title'  => '<h5 class="widget-title">',
+            'after_title'   => '</h5>',
+        ) );
+    } );
+}
 add_action( 'after_setup_theme', function () {
-    //load_theme_textdomain( 'vg', get_stylesheet_directory_uri() . '/languages' );
     //add_theme_support( 'nanga-analytics' );
     //add_theme_support( 'nanga-asset-cachebusting' );
     //add_theme_support( 'nanga-cdn-assets' );
@@ -186,6 +186,8 @@ add_action( 'after_setup_theme', function () {
     //add_theme_support( 'nanga-modernizr' );
     //add_theme_support( 'nanga-sanity' );
     //add_theme_support( 'nanga-settings' );
+    //add_theme_support( 'nanga-sidebar' );
     //add_theme_support( 'nanga-support-request' );
     //add_theme_support( 'woocommerce' );
+    //load_theme_textdomain( 'vg', get_stylesheet_directory_uri() . '/languages' );
 } );
