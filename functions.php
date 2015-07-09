@@ -1,18 +1,4 @@
 <?php
-/*
-add_action( 'tgmpa_register', function () {
-    $plugins = array(
-        array(
-            'name'               => 'Timber',
-            'slug'               => 'timber-library',
-            'required'           => true,
-            'force_activation'   => true,
-            'force_deactivation' => false
-        ),
-    );
-    tgmpa( $plugins );
-} );
-*/
 if ( ! class_exists( 'Timber' ) ) {
     add_action( 'admin_notices', function () {
         echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . esc_url( admin_url( 'plugins.php#timber' ) ) . '">' . esc_url( admin_url( 'plugins.php' ) ) . '</a></p></div>';
