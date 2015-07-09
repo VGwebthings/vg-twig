@@ -7,7 +7,7 @@ if ( ! class_exists( 'Timber' ) ) {
     return;
 }
 
-class StarterSite extends TimberSite {
+class TheSite extends TimberSite {
     function __construct() {
         add_filter( 'timber_context', array( $this, 'add_to_context' ) );
         add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
@@ -122,7 +122,7 @@ class StarterSite extends TimberSite {
     }
 }
 
-new StarterSite();
+new TheSite();
 function vg_antispam( $email ) {
     return antispambot( $email );
 }
