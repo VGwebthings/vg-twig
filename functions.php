@@ -127,10 +127,13 @@ function vg_antispam( $email ) {
     return antispambot( $email );
 }
 
-//@todo
-//if ( class_exists( 'Timber' ) ) {
-//    Timber::$cache = true;
-//}
+if ( class_exists( 'Timber' ) ) {
+    if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
+        Timber::$cache = false;
+    } else {
+        Timber::$cache = true;
+    }
+}
 add_action( 'wp_enqueue_scripts', function () {
     global $wp_styles;
     global $is_IE;
