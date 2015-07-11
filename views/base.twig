@@ -5,31 +5,14 @@
 {% endblock %}
 <body class="{{ body_class }}">
 <div id="page">
-    <header id="header">
-        {% block header %}
-            <div class="wrapper">
-                <a id="logo" href="{{ site.url }}" title="{{ site.name }}" rel="home">{{ site.name }}</a>
-                <nav id="access" class="main-navigation" role="navigation">
-                    <ul>
-                        {% for item in menu.items %}
-                            <li class="{{ item.classes | join(' ') }}">
-                                <a href="{{ item.link }}">{{ item.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </nav>
-            </div>
-        {% endblock %}
-    </header>
+    {% block header %}{% include 'header.twig' %}{% endblock %}
     <section id="content" role="main">
-        {% if title %}<h1>{{ title }}</h1>{% endif %}
-        {% block content %}
-        {% endblock %}
-        {% if sidebar %}{{ sidebar }}{% endif %}
+        {#{% if title %}<h1>{{ title }}</h1>{% endif %}#}
+        {% block content %}{% endblock %}
+        {#{% if sidebar %}{{ sidebar }}{% endif %}#}
     </section>
-    {% block footer %}
-        <footer id="footer">{% include 'footer.twig' %}</footer>
-    {% endblock %}
+    {% block footer %}{% include 'footer.twig' %}{% endblock %}
 </div>
 {{ function('wp_footer') }}
+{% block foot %}{% endblock %}
 </body></html>
