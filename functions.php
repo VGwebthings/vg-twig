@@ -135,16 +135,16 @@ if ( class_exists( 'Timber' ) ) {
     }
 }
 add_action( 'wp_enqueue_scripts', function () {
-    global $wp_styles;
-    global $is_IE;
-    //wp_enqueue_style( 'scss', get_stylesheet_directory_uri() . '/assets/css/app.scss.css', false, null );
-    //wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/assets/css/style.css', false, null );
-    //wp_enqueue_style( 'app', get_stylesheet_directory_uri() . '/assets/css/app.css', false, null );
-    if ( $is_IE ) {
-        wp_enqueue_style( 'ie-styles', get_stylesheet_directory_uri() . '/assets/css/ie.css', false, null );
-        $wp_styles->add_data( 'ie-styles', 'conditional', 'IE' );
+    //global $wp_styles;
+    //global $is_IE;
+    if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
+        wp_enqueue_style( 'app', get_stylesheet_directory_uri() . '/assets/css/app.scss.css', false, null );
+    } else {
+        wp_enqueue_style( 'app', get_stylesheet_directory_uri() . '/assets/css/app.min.css', false, null );
     }
-    //wp_enqueue_script( 'app', get_stylesheet_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), null, true );
+    wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/assets/css/style.css', false, null );
+    //if ( $is_IE ) { wp_enqueue_style( 'ie-styles', get_stylesheet_directory_uri() . '/assets/css/ie.css', false, null ); $wp_styles->add_data( 'ie-styles', 'conditional', 'IE' ); }
+    wp_enqueue_script( 'app', get_stylesheet_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), null, true );
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
