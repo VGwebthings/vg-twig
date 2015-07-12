@@ -1,12 +1,8 @@
 {
   "name": "vg-twig",
   "version": "1.0.0",
-  "authors": [
-    "Panos Paganis <panos@paganis.net>",
-    "VG web things <info@vgwebthings.com>"
-  ],
+  "author": "Panos Paganis",
   "description": "VG web things Twig",
-  "homepage": "https://github.com/VGwebthings/vg-twig",
   "private": true,
   "ignore": [
     "**/.*",
@@ -20,6 +16,7 @@
   "devDependencies": {
     "basscss-sass": "~2.0.0",
     "juice": "~1.0.1",
-    "materialize": "~0.97.0"
+    "materialize": "~0.97.0",
+    "normalize-scss": "~3.0.3"
   }
 }

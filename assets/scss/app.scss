@@ -1,8 +1,4 @@
 @charset "UTF-8";
-//@import "bourbon/bourbon";
-//@import "base/grid-settings";
-//@import "neat/neat";
-//@import "base/base";
 //@import "mixins/better_helvetica";
 //@import "mixins/centerer";
 //@import "mixins/coverer";
@@ -10,6 +6,6 @@
 //@import "mixins/flash";
 //@import "mixins/invisible";
 //@import "mixins/word-wrap";
+//@import "../vendor/juice/dist/juice";
 @import "variables";
-@import "../vendor/juice/dist/juice";
 @import "basscss/basscss";

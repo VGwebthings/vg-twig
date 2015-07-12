@@ -1,0 +1,17 @@
+{
+  "name": "vg-twig",
+  "version": "1.0.0",
+  "description": "VG web things Twig",
+  "author": "Panos Paganis",
+  "private": true,
+  "devDependencies": {
+    "autoprefixer-core": "*",
+    "grunt": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-postcss": "*"
+  }
+}
