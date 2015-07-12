@@ -166,6 +166,7 @@ add_action( 'after_setup_theme', function () {
     //add_theme_support( 'nanga-asset-cachebusting' );
     //add_theme_support( 'nanga-cdn-assets' );
     //add_theme_support( 'nanga-debug-assets' );
+    //add_theme_support( 'nanga-deploy' );
     //add_theme_support( 'nanga-disable-categories' );
     //add_theme_support( 'nanga-disable-comments' );
     //add_theme_support( 'nanga-disable-posts' );
