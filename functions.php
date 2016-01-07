@@ -178,6 +178,7 @@ add_action( 'after_setup_theme', function () {
     //add_theme_support( 'nanga-settings' );
     //add_theme_support( 'nanga-sidebar' );
     //add_theme_support( 'nanga-support-request' );
+    add_theme_support( 'nanga-white-label-login' );
     //add_theme_support( 'woocommerce' );
     //load_theme_textdomain( 'vg', get_stylesheet_directory_uri() . '/languages' );
 } );
