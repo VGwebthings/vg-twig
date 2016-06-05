@@ -1,13 +1,14 @@
 <header id="header">
     <a id="logo" href="{{ site.url }}" title="{{ site.name }}" rel="home">{{ site.name }}</a>
-    <nav id="access" class="main-navigation" role="navigation">
+    <div class="main-navigation">
         <ul>
             {% for item in menu.items %}
                 <li class="{{ item.classes | join(' ') }}">
-                    <a href="{{ item.link }}">{{ item.title }}</a>{% if item.get_children %}
+                    <a href="{{ item.link }}">{{ item.title }}</a>
+                    {% if item.get_children %}
                         <ul>
                             {% for child in item.get_children %}
-                                <li class="{{ item.classes | join(' ') }}">
+                                <li class="{{ child.classes | join(' ') }}">
                                     <a href="{{ child.get_link }}">{{ child.title }}</a>
                                 </li>
                             {% endfor %}
@@ -16,5 +17,5 @@
                 </li>
             {% endfor %}
         </ul>
-    </nav>
+    </div>
 </header>

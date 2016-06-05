@@ -1,20 +1,7 @@
 {
   "name": "vg-twig",
-  "version": "1.0.0",
-  "author": "Panos Paganis",
-  "description": "VG web things Twig",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "assets/vendor",
-    "test",
-    "tests"
-  ],
   "dependencies": {},
   "devDependencies": {
-    "basscss-sass": "*",
-    "juice": "*"
+    "basscss-sass": "*"
   }
 }

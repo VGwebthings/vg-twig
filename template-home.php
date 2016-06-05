@@ -1,5 +1,8 @@
 <?php /* Template Name: Home */
+use Timber\Post;
+use Timber\Timber;
+
 $context         = Timber::get_context();
-$post            = new TimberPost();
+$post            = new Post();
 $context['post'] = $post;
-Timber::render( array( 'template-home.twig' ), $context );
+Timber::render('template-home.twig', $context);

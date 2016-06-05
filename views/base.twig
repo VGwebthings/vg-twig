@@ -3,14 +3,14 @@
     {% block head %}{% endblock %}
     </head>
 {% endblock %}
-<body class="{{ body_class }}">
-<div id="page">
+<body{#class="{{ body_class }}"#}>
+<div id="app">
     {% block header %}{% include 'header.twig' %}{% endblock %}
-    <section id="content" role="main">
+    <div id="content">
         {#{% if title %}<h1>{{ title }}</h1>{% endif %}#}
         {% block content %}{% endblock %}
         {#{% if sidebar %}{{ sidebar }}{% endif %}#}
-    </section>
+    </div>
     {% block footer %}{% include 'footer.twig' %}{% endblock %}
 </div>
 {{ function('wp_footer') }}

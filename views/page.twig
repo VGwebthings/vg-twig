@@ -1,8 +1,7 @@
 {% extends "base.twig" %}
 {% block content %}
-    <article class="type-{{ post.post_type }}">
+    <div class="type-{{ post.post_type }}">
         <h1 class="entry-title">{{ post.title }}</h1>
-
         <div class="entry-content">{{ post.content }}</div>
-    </article>
+    </div>
 {% endblock %}

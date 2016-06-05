@@ -1,6 +1,8 @@
 <?php
-$data            = array();
-$data['dynamic'] = Timber::get_widgets( 'sidebar' );
-if ( ! empty( $data ) ) {
-    Timber::render( array( 'sidebar.twig' ), $data );
+use Timber\Timber;
+
+$data            = [];
+$data['dynamic'] = Timber::get_widgets('sidebar');
+if ( ! empty($data)) {
+    Timber::render(['sidebar.twig'], $data);
 }
