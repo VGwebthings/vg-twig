@@ -10,7 +10,7 @@ $(document).bind('gform_confirmation_loaded', function (event, formId) {
         $('.do-form-reload').fadeOut();
     }, 5000);
     setTimeout(function () {
-        $.get('/wp-admin/admin-ajax.php' + '?action=vg_get_form&form_id=' + formId, function (response) {
+        $.get('/wp-admin/admin-ajax.php?action=vg_get_form&form_id=' + formId, function (response) {
             $('.do-form-reload').html(response).fadeIn();
         });
     }, 5500);
