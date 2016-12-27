@@ -10,7 +10,7 @@ if (comments_open()) {
     $context['comment_form'] = Helper::get_comment_form();
 }
 if (post_password_required($post->ID)) {
-    Timber::render('single-password.twig', $context);
+    Timber::render(['single-password.twig'], $context);
 } else {
     Timber::render(['single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig'], $context);
 }
