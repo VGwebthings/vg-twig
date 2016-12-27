@@ -18,14 +18,13 @@ class TheSite extends Site
 
     function setupCache()
     {
-        if (WP_DEBUG) {
-            Timber::$cache = false;
-        } else {
+        Timber::$cache = false;
+        if (defined('WP_ENV') && 'production' === WP_ENV) {
             Timber::$cache = true;
-            add_filter('timber/cache/mode', function ($cache_mode) {
-                $cache_mode = Loader::CACHE_OBJECT;
+            add_filter('timber/cache/mode', function ($cacheMode) {
+                $cacheMode = Loader::CACHE_OBJECT;
 
-                return $cache_mode;
+                return $cacheMode;
             });
         }
     }
