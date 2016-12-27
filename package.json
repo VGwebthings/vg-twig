@@ -1,12 +1,32 @@
 {
+  "scripts": {
+    "postinstall": "npm run build",
+    "build": "webpack --progress --display-errors --display-error-details --display-reasons --config ./webpack.config.js -w",
+    "production": "webpack --progress --display-errors --optimize-minimize --optimize-occurence-order --optimize-dedupe --config ./webpack.production.config.js"
+  },
+  "browserslist": [
+    "last 5 versions",
+    ">1%"
+  ],
   "devDependencies": {
-    "autoprefixer-loader": "*",
+    "autoprefixer": "*",
     "css-loader": "*",
+    "extract-text-webpack-plugin": "*",
+    "favicons-webpack-plugin": "*",
     "file-loader": "*",
+    "imagemin-webpack-plugin": "*",
+    "json-loader": "*",
     "node-sass": "*",
+    "postcss-loader": "*",
     "sass-loader": "*",
     "style-loader": "*",
     "url-loader": "*",
     "webpack": "*"
+  },
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "magnific-popup": "*",
+    "slick-carousel": "*",
+    "velocity-animate": "*"
   }
 }
