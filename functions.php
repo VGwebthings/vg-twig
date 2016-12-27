@@ -10,6 +10,7 @@ require 'includes/helpers.php';
 require 'classes/Site.php';
 
 require 'wordpress/assets.php';
+require 'wordpress/dashboard.php';
 require 'wordpress/rewrites.php';
 require 'wordpress/wordpress.php';
 
