@@ -8,17 +8,17 @@ class TheSite extends Site
 
     function __construct()
     {
-        add_filter('timber_context', [$this, 'add_to_context']);
-        add_filter('get_twig', [$this, 'add_to_twig']);
-        //add_action( 'init', array( $this, 'register_post_types' ) );
+        add_filter('timber_context', [$this, 'addToContext']);
+        add_filter('get_twig', [$this, 'addToTwig']);
+        add_action('init', [$this, 'registerPostTypes']);
         parent::__construct();
     }
 
-    function register_post_types()
+    function registerPostTypes()
     {
     }
 
-    function add_to_context($context)
+    function addToContext($context)
     {
         $context['settings'] = get_fields('options');
         $context['menu']     = new Menu('primary');
@@ -30,7 +30,7 @@ class TheSite extends Site
         return $context;
     }
 
-    function add_to_twig($twig)
+    function addToTwig($twig)
     {
         $twig->addExtension(new Twig_Extension_StringLoader());
         $twig->addFilter('antispam', new Twig_Filter_Function([$this, 'antispam']));
