@@ -1,4 +1,5 @@
 <?php
+use Timber\Loader;
 use Timber\Menu;
 use Timber\Site;
 use Timber\Timber;
@@ -11,7 +12,22 @@ class TheSite extends Site
         add_filter('timber_context', [$this, 'addToContext']);
         add_filter('get_twig', [$this, 'addToTwig']);
         add_action('init', [$this, 'registerPostTypes']);
+        $this->setupCache();
         parent::__construct();
+    }
+
+    function setupCache()
+    {
+        if (WP_DEBUG) {
+            Timber::$cache = false;
+        } else {
+            Timber::$cache = true;
+            add_filter('timber/cache/mode', function ($cache_mode) {
+                $cache_mode = Loader::CACHE_OBJECT;
+
+                return $cache_mode;
+            });
+        }
     }
 
     function registerPostTypes()
@@ -45,5 +61,3 @@ class TheSite extends Site
 }
 
 new TheSite();
-
-Timber::$cache = false;
