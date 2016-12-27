@@ -35,8 +35,8 @@ class TheSite extends Site
 
     function addToContext($context)
     {
-        $context['settings'] = get_fields('options');
-        $context['menu']     = new Menu('primary');
+        //$context['settings'] = get_fields('options');
+        //$context['menu']     = new Menu('primary');
         if (current_theme_supports('nanga-sidebar')) {
             $context['sidebar'] = Timber::get_sidebar('sidebar.php');
         }
