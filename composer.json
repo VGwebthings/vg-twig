@@ -3,5 +3,9 @@
     "psr-4": {
       "VG\\": "app/"
     }
+  },
+  "require": {
+    "nochso/html-compress-twig": "*",
+    "mobiledetect/mobiledetectlib": "*"
   }
 }
