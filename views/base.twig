@@ -6,11 +6,7 @@
 <body{#class="{{ body_class }}"#}>
 <div id="app">
     {% block header %}{% include 'header.twig' %}{% endblock %}
-    <div id="content">
-        {#{% if title %}<h1>{{ title }}</h1>{% endif %}#}
-        {% block content %}{% endblock %}
-        {#{% if sidebar %}{{ sidebar }}{% endif %}#}
-    </div>
+    <div id="content">{% block content %}{% endblock %}</div>
     {% block footer %}{% include 'footer.twig' %}{% endblock %}
 </div>
 {{ function('wp_footer') }}

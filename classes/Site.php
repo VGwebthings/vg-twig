@@ -48,8 +48,8 @@ class TheSite extends Site
 
     function addToTwig($twig)
     {
+        //$twig->addFilter('antispam', new Twig_Filter_Function([$this, 'antispam']));
         $twig->addExtension(new Twig_Extension_StringLoader());
-        $twig->addFilter('antispam', new Twig_Filter_Function([$this, 'antispam']));
 
         return $twig;
     }
