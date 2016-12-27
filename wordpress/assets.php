@@ -1,4 +1,13 @@
 <?php
+add_filter('style_loader_src', 'vg_remove_asset_version', 15, 1);
+add_filter('script_loader_src', 'vg_remove_asset_version', 15, 1);
+function vg_remove_asset_version($src)
+{
+    $parts = explode('?ver', $src);
+
+    return $parts[0];
+}
+
 add_action('wp_enqueue_scripts', function () {
     wp_scripts()->add_data('jquery', 'group', 1);
     wp_scripts()->add_data('jquery-core', 'group', 1);
