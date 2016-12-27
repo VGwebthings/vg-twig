@@ -13,3 +13,4 @@ require 'wordpress/assets.php';
 require 'wordpress/rewrites.php';
 require 'wordpress/wordpress.php';
 require 'gravity-forms/gravity-forms.php';
+require 'wpml/wpml.php';
