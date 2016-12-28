@@ -2,17 +2,20 @@
 engines:
   csslint:
     enabled: true
+    checks:
+      read-error:
+        enabled: false
   duplication:
     enabled: true
     config:
       languages:
-      - ruby
       - javascript
-      - python
       - php
   eslint:
     enabled: true
   fixme:
+    enabled: true
+  phpcodesniffer:
     enabled: true
   phpmd:
     enabled: true
