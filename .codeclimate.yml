@@ -16,7 +16,7 @@ engines:
   fixme:
     enabled: true
   phpcodesniffer:
-    enabled: true
+    enabled: false
   phpmd:
     enabled: true
     checks:
