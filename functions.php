@@ -2,7 +2,7 @@
 if ( ! class_exists('Timber')) {
     return;
 }
-require 'vendor/autoload.php';
+//require 'vendor/autoload.php';
 
 require 'app/routes.php';
 require 'includes/helpers.php';
