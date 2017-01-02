@@ -20,6 +20,11 @@ add_action('after_setup_theme', function () {
     //add_theme_support('woocommerce');
     add_theme_support('nanga-disable-comments');
     load_theme_textdomain('vg', get_stylesheet_directory() . '/languages');
+    /*
+    register_nav_menus([
+        'menuSlug'     => 'Menu Name',
+    ]);
+    */
 });
 if (current_theme_supports('nanga-sidebar')) {
     add_action('widgets_init', function () {
