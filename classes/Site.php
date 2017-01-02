@@ -47,7 +47,8 @@ class TheSite extends Site
 
     function addToTwig($twig)
     {
-        //$twig->addFilter('antispam', new Twig_Filter_Function([$this, 'antispam']));
+        // $twig->addFilter('antispam', new Twig_Filter_Function([$this, 'antispam']));
+        // $twig->addExtension(new \nochso\HtmlCompressTwig\Extension(true));
         $twig->addExtension(new Twig_Extension_StringLoader());
 
         return $twig;
