@@ -1,10 +1,11 @@
-$('input, textarea')
-    .focus(function () {
-        $(this).data('placeholder', $(this).attr('placeholder')).attr('placeholder', '');
-    })
-    .blur(function () {
-        $(this).attr('placeholder', $(this).data('placeholder'));
-    });
+console.log('--- _forms.js');
+// $('input, textarea')
+//     .focus(function () {
+//         $(this).data('placeholder', $(this).attr('placeholder')).attr('placeholder', '');
+//     })
+//     .blur(function () {
+//         $(this).attr('placeholder', $(this).data('placeholder'));
+//     });
 $(document).bind('gform_confirmation_loaded', function (event, formId) {
     setTimeout(function () {
         $('.do-form-reload').fadeOut();

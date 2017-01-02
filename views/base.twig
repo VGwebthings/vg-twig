@@ -11,4 +11,14 @@
 </div>
 {{ function('wp_footer') }}
 {% block foot %}{% endblock %}
+{#
+<script>
+    var loadScripts = function () {
+        (function ($) {
+            console.log('--- base.twig');
+        })(jQuery);
+    };
+    window.addEventListener('load', loadScripts);
+</script>
+#}
 </body></html>
