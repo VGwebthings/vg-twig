@@ -2,18 +2,20 @@
 if ( ! class_exists('Timber')) {
     return;
 }
-//require 'vendor/autoload.php';
+//require_once 'vendor/autoload.php';
 
-require 'app/routes.php';
-require 'includes/helpers.php';
+require_once 'app/routes.php';
+require_once 'includes/helpers.php';
 
-require 'classes/Site.php';
+require_once 'classes/Site.php';
 
-require 'wordpress/assets.php';
-require 'wordpress/dashboard.php';
-require 'wordpress/rewrites.php';
-require 'wordpress/wordpress.php';
+require_once 'includes/wordpress/assets.php';
+require_once 'includes/wordpress/dashboard.php';
+require_once 'includes/wordpress/mailer.php';
+require_once 'includes/wordpress/rewrites.php';
+require_once 'includes/wordpress/wordpress.php';
 
-require 'acf/acf.php';
-require 'gravity-forms/gravity-forms.php';
-require 'wpml/wpml.php';
+require_once 'includes/acf/acf.php';
+require_once 'includes/gravity-forms/gravity-forms.php';
+require_once 'includes/woocommerce/woocommerce.php';
+require_once 'includes/wpml/wpml.php';

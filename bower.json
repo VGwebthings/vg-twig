@@ -1,6 +1,5 @@
 {
   "name": "vg-twig",
-  "dependencies": {},
   "devDependencies": {
     "basscss-sass": "*"
   }

@@ -5,5 +5,5 @@
 //        exit;
 //    }
 //    var_dump($params);
-//    //Routes::load('template-experiments.php', $params, false, 200);
+//    Routes::load('template-experiments.php', $params, false, 200);
 //});

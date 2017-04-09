@@ -2,9 +2,6 @@
 engines:
   csslint:
     enabled: true
-    checks:
-      read-error:
-        enabled: false
   duplication:
     enabled: true
     config:
@@ -15,8 +12,13 @@ engines:
     enabled: true
   fixme:
     enabled: true
-  phpcodesniffer:
-    enabled: false
+    config:
+      strings:
+      - BUG
+      - FIXME
+      - HACK
+      - NANGA
+      - TODO
   phpmd:
     enabled: true
     checks:
@@ -24,14 +26,29 @@ engines:
         enabled: false
       Controversial/Superglobals:
         enabled: false
+  scss-lint:
+    enabled: true
+  phpcodesniffer:
+    enabled: false
+    config:
+      standard: "PSR1,PSR2"
+  stylelint:
+    enabled: true
+  shellcheck:
+    enabled: true
 ratings:
   paths:
   - "**.css"
+  - "**.less"
+  - "**.scss"
+  - "**.sss"
   - "**.inc"
   - "**.js"
   - "**.jsx"
   - "**.module"
   - "**.php"
-  - "**.py"
-  - "**.rb"
-exclude_paths: []
+  - "**.sh"
+exclude_paths:
+- build/
+- node_modules/
+- vendor/

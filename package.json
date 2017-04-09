@@ -1,8 +1,8 @@
 {
   "scripts": {
     "postinstall": "npm run build",
-    "build": "webpack --progress --display-errors --display-error-details --display-reasons --config ./webpack.config.js -w",
-    "production": "webpack --progress --display-errors --optimize-minimize --optimize-occurence-order --optimize-dedupe --config ./webpack.production.config.js"
+    "build": "webpack --progress --config ./webpack.config.js -w",
+    "production": "webpack --progress --optimize-minimize --optimize-occurence-order --optimize-dedupe --config ./webpack.production.config.js"
   },
   "browserslist": [
     "last 5 versions",
