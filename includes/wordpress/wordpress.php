@@ -3,6 +3,7 @@ add_action('after_setup_theme', function () {
     //add_theme_support('nanga-analytics');
     //add_theme_support('nanga-asset-cachebusting');
     //add_theme_support('nanga-cdn-assets');
+    //add_theme_support('nanga-cdn-jquery');
     //add_theme_support('nanga-cookies');
     //add_theme_support('nanga-debug-assets');
     //add_theme_support('nanga-deploy');
