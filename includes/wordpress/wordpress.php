@@ -1,42 +1,24 @@
 <?php
 add_action('after_setup_theme', function () {
-    //add_theme_support('nanga-analytics');
-    //add_theme_support('nanga-asset-cachebusting');
-    //add_theme_support('nanga-cdn-assets');
-    //add_theme_support('nanga-cdn-jquery');
-    //add_theme_support('nanga-cookies');
-    //add_theme_support('nanga-debug-assets');
-    //add_theme_support('nanga-deploy');
-    //add_theme_support('nanga-disable-categories');
-    //add_theme_support('nanga-disable-posts');
-    //add_theme_support('nanga-disable-revisions');
-    //add_theme_support('nanga-disable-tags');
-    //add_theme_support('nanga-js-to-footer');
-    //add_theme_support('nanga-mobile-check');
-    //add_theme_support('nanga-modernizr');
-    //add_theme_support('nanga-sanity');
-    //add_theme_support('nanga-settings');
-    //add_theme_support('nanga-sidebar');
-    //add_theme_support('nanga-support-request');
-    //add_theme_support('nanga-white-label-login');
-    //add_theme_support('woocommerce');
-    add_theme_support('nanga-disable-comments');
+    add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
+    add_theme_support('menus');
+    add_theme_support('post-thumbnails');
+    add_theme_support('title-tag');
+    // add_theme_support('widgets');
+    add_theme_support('woocommerce');
     load_theme_textdomain('vg', get_stylesheet_directory() . '/languages');
-    /*
     register_nav_menus([
-        'menuSlug'     => 'Menu Name',
+        'primary' => 'Primary Menu',
+        'footer'  => 'Footer Menu',
     ]);
-    */
 });
-if (current_theme_supports('nanga-sidebar')) {
-    add_action('widgets_init', function () {
-        register_sidebar([
-            'name'          => 'Sidebar',
-            'id'            => 'sidebar',
-            'before_widget' => '<aside class="widget %2$s">',
-            'after_widget'  => '</aside>',
-            'before_title'  => '<h5 class="widget-title">',
-            'after_title'   => '</h5>',
-        ]);
-    });
-}
+add_action('widgets_init', function () {
+    register_sidebar([
+        'name'          => 'Sidebar',
+        'id'            => 'sidebar',
+        'before_widget' => '<aside class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => '<h5 class="widget-title">',
+        'after_title'   => '</h5>',
+    ]);
+});

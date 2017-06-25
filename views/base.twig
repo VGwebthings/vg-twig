@@ -1,9 +1,16 @@
-{% block html_head_container %}
-    {% include 'html-header.twig' %}
+<!DOCTYPE html>
+<html {{ site.language_attributes }} class="js {{ body_class }}">
+<head>
+    <meta charset="{{ site.charset }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="blitz" content="mu-659c418a-34b5e56c-4cfac132-ab860575">
+    <meta id="token" name="token" content="{{ function( 'wp_create_nonce' ) }}">
+    {{ function('wp_head') }}
     {% block head %}{% endblock %}
-    </head>
-{% endblock %}
-<body{#class="{{ body_class }}"#}>
+</head>
+<body>
 <div id="app">
     {% block header %}{% include 'header.twig' %}{% endblock %}
     <div id="content">{% block content %}{% endblock %}</div>
@@ -11,6 +18,18 @@
 </div>
 {{ function('wp_footer') }}
 {% block foot %}{% endblock %}
+{#
+<link rel="preload" href="{{ theme.link }}/build/app.css" as="style" onload="this.rel='stylesheet'">
+<script>
+    {{ source('assets/js/vendor/loadCSS.min.js', ignore_missing = true) }}
+    {{ source('assets/js/vendor/cssrelpreload.min.js', ignore_missing = true) }}
+</script>
+#}
+{#
+<noscript>
+    <link rel="stylesheet" href="{{ theme.link }}/build/app.css">
+</noscript>
+#}
 {#
 <script>
     var loadScripts = function () {
@@ -21,4 +40,5 @@
     window.addEventListener('load', loadScripts);
 </script>
 #}
-</body></html>
+</body>
+</html>

@@ -4,33 +4,43 @@ use Timber\Menu;
 use Timber\Site;
 use Timber\Timber;
 
-class TheSite extends Site
+class App extends Site
 {
 
-    function __construct()
+    public function __construct()
     {
-        add_filter('get_twig', [$this, 'addToTwig']);
-        // add_filter('post_type_labels_post', [$this, 'defaultPostLabels']);
-        add_filter('timber_context', [$this, 'addToContext']);
-        add_action('init', [$this, 'registerPostTypes']);
-        $this->setupCache();
+        add_action('init', [$this, 'types']);
+        add_filter('timber_context', [$this, 'context']);
+        add_filter('get_twig', [$this, 'add']);
+        // add_filter('post_type_labels_post', [$this, 'labelsPost']);
+        // add_filter('timber/cache/mode', [$this, 'cacheMode']);
+        // $this->cache();
         parent::__construct();
     }
 
-    function setupCache()
+    public function types()
     {
-        Timber::$cache = false;
-        if (defined('WP_ENV') && 'production' === WP_ENV) {
-            Timber::$cache = true;
-            add_filter('timber/cache/mode', function ($cacheMode) {
-                $cacheMode = Loader::CACHE_OBJECT;
-
-                return $cacheMode;
-            });
-        }
     }
 
-    function defaultPostLabels($labels)
+    public function context($context)
+    {
+        $context['settings'] = (function_exists('get_fields')) ? get_fields('options') : [];
+        $context['menu']     = new Menu('primary');
+        $context['sidebar']  = Timber::get_sidebar('sidebar.php');
+        $context['site']     = $this;
+
+        return $context;
+    }
+
+    public function add($twig)
+    {
+        // $twig->addExtension(new \nochso\HtmlCompressTwig\Extension(true));
+        $twig->addExtension(new Twig_Extension_StringLoader());
+
+        return $twig;
+    }
+
+    public function labelsPost($labels)
     {
         $labels->add_new               = 'Νέο άρθρο';
         $labels->add_new_item          = 'Προσθήκη άρθρου';
@@ -61,35 +71,15 @@ class TheSite extends Site
         return $labels;
     }
 
-    function registerPostTypes()
+    public function cacheMode($mode)
     {
+        $mode = Loader::CACHE_OBJECT;
+
+        return $mode;
     }
 
-    function addToContext($context)
+    private function cache()
     {
-        //$context['settings'] = get_fields('options');
-        //$context['menu']     = new Menu('primary');
-        if (current_theme_supports('nanga-sidebar')) {
-            $context['sidebar'] = Timber::get_sidebar('sidebar.php');
-        }
-        $context['site'] = $this;
-
-        return $context;
-    }
-
-    function addToTwig($twig)
-    {
-        // $twig->addFilter('antispam', new Twig_Filter_Function([$this, 'antispam']));
-        // $twig->addExtension(new \nochso\HtmlCompressTwig\Extension(true));
-        $twig->addExtension(new Twig_Extension_StringLoader());
-
-        return $twig;
-    }
-
-    function antispam($email)
-    {
-        return antispambot($email);
+        Timber::$cache = defined('WP_ENV') && 'production' === WP_ENV;
     }
 }
-
-new TheSite();

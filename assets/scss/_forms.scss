@@ -1,1 +1,24 @@
 /* Forms */
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  border: 1px solid;
+  box-shadow: none;
+  cursor: pointer;
+  display: block;
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+  width: 100%;
+}
+
+input[type="submit"],
+button[type="submit"] {
+  text-transform: uppercase;
+}
+
+.gform_fields {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -1,4 +1,3 @@
-console.log('--- app.js');
 require('../scss/app.scss');
 // require('./components/_links');
 // require('./components/_scroll');

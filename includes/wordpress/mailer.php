@@ -1,5 +1,5 @@
 <?php
-if ('production' != WP_ENV) {
+if (defined('WP_ENV') && 'production' !== WP_ENV) {
     add_action('phpmailer_init', function ($phpmailer) {
         $phpmailer->isSMTP();
         $phpmailer->Host     = 'smtp.mailtrap.io';

@@ -1,16 +1,27 @@
 var webpack = require('webpack');
+var ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-var ImageminPlugin = require('imagemin-webpack-plugin').default;
+// var FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+// var ImageminPlugin = require('imagemin-webpack-plugin').default;
 var autoprefixer = require('autoprefixer');
+var ModernizrConfig = {
+    'minify': true,
+    'options': [
+        'mq',
+        'setClasses'
+    ],
+    'feature-detects': [
+        'geolocation',
+        'storage/localstorage',
+        'storage/sessionstorage'
+    ]
+};
 module.exports = {
-    // debug: true,
-    // devtool: 'inline-source-map',
     entry: {
         app: './assets/js/app.js'
     },
     output: {
-        path: './build',
+        path: __dirname + '/build',
         filename: '[name].js'
     },
     module: {
@@ -25,7 +36,7 @@ module.exports = {
             },
             {
                 test: /\.scss/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?importLoaders=1&-autoprefixer&sourceMap!postcss-loader!sass-loader?sourceMap')
+                loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?importLoaders=1&-autoprefixer!postcss-loader!sass-loader'})
                 //loader: 'style-loader!css-loader?importLoaders=1&-autoprefixer&sourceMap!postcss-loader!sass-loader?sourceMap'
             },
             {
@@ -39,30 +50,23 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.LoaderOptionsPlugin({
-        //     options: {
-        //         context: __dirname,
-        //         debug: true,
-        //         postcss: [
-        //             autoprefixer({
-        //                 browsers: ['last 10 versions'],
-        //                 remove: false
-        //             })
-        //         ]
-        //     }
-        // }),
-        // new webpack.DefinePlugin({
-        //     'process.env': {
-        //         'NODE_ENV': JSON.stringify('production')
-        //     }
-        // }),
+        // new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                context: __dirname,
+                debug: true
+            }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                // 'NODE_ENV': JSON.stringify('production')
+            }
+        }),
         new webpack.ProvidePlugin({
             $: 'jquery'
         }),
-        // new webpack.NoErrorsPlugin(),
         // new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin(),
+        // new webpack.optimize.OccurrenceOrderPlugin(),
         // new webpack.optimize.UglifyJsPlugin({
         //     compress: {
         //         warnings: false
@@ -73,10 +77,12 @@ module.exports = {
         //     },
         //     sourceMap: false
         // }),
-        new ExtractTextPlugin('[name].css')
+        new ModernizrWebpackPlugin(ModernizrConfig),
+        new ExtractTextPlugin('[name].css'),
         // new FaviconsWebpackPlugin({
         //     emitStats: false,
-        //     logo: './assets/img/browser.png',
+        //     inject: true,
+        //     logo: './assets/img/logo.svg',
         //     persistentCache: true
         // })
         // new ImageminPlugin({
@@ -88,15 +94,5 @@ module.exports = {
     ],
     externals: {
         'jquery': 'jQuery'
-    },
-    postcss: [
-        autoprefixer({
-            //browsers: ['last 5 versions', '>1%']
-            //remove: false
-        })
-    ],
-    sassLoader: {
-        outputStyle: 'expanded'
-        //sourceComments: true
     }
 };

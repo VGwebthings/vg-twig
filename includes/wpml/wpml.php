@@ -1,11 +1,7 @@
 <?php
-define('ICL_DONT_LOAD_LANGUAGE_SELECTOR_CSS', true);
-define('ICL_DONT_LOAD_LANGUAGES_JS', true);
-define('ICL_DONT_LOAD_NAVIGATION_CSS', true);
-//add_filter('wpml_hide_management_column', '__return_false');
-add_action('admin_head', function () {
-    echo '<style>#wp-admin-bar-WPML_ALS > div:first-child:before{content:"\\f326";}#wp-admin-bar-WPML_ALS img{display:none!important;}</style>';
-});
+if ( ! class_exists('SitePress')) {
+    return;
+}
 function vg_language_switcher()
 {
     $languages = apply_filters('wpml_active_languages', null, ['skip_missing' => 0]);

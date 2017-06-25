@@ -3,9 +3,6 @@
     <div class="type-{{ post.post_type }}">
         <h1 class="entry-title">{{ post.title }}</h1>
         <div class="entry-meta">
-            <a href="{{ post.author.path }}">
-                <span class="author vcard"><span class="fn">{{ post.author.name }}</span></span>
-            </a>
             <span class="updated">{{ post.post_date|date }}</span>
         </div>
         <div class="entry-content">{{ post.content }}</div>

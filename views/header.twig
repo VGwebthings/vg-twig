@@ -1,7 +1,7 @@
 <header id="header">
     <a href="{{ site.url }}" title="{{ site.name }}" rel="home" class="header__logo">{{ site.name }}</a>
     {% if menu %}
-        <div class="main-navigation">
+        <div class="header__menu">
             <ul>
                 {% for item in menu.items %}
                     <li class="{{ item.classes | join(' ') }}">
