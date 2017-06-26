@@ -1,0 +1,9 @@
+/.codeclimate.yml export-ignore
+/.csslintrc.yml export-ignore
+/.eslintignore export-ignore
+/.eslintrc.yml export-ignore
+/.eslintrc.yml.swp export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.scss-lint.yml export-ignore
+/.stylelintrc.json export-ignore
